@@ -4,13 +4,10 @@ Disposable inboxes on your own domain, in the spirit of Yopmail: mail sent to
 `anything@yourdomain.dev` lands in a [Mailpit](https://mailpit.axllent.org/)
 instance on your home network.
 
-```
-Sender ──► Cloudflare Email Routing (catch-all) ──► Email Worker
-                                                        │ SMTP over Workers VPC
-                                                        ▼
-               Mailpit ◄── TCP ── cloudflared ◄── Cloudflare Tunnel
-               (home network)
-```
+![Architecture: sender, Cloudflare Email Routing, Email Worker, Cloudflare Tunnel, cloudflared, Mailpit](docs/architecture.jpg)
+
+`cloudflared` and Mailpit can run on the same machine (as in the diagram) or on
+different machines in your home network.
 
 The Worker does not change the message. It opens a TCP connection to Mailpit
 through your Cloudflare Tunnel (Workers VPC) and delivers the raw message as a
@@ -116,3 +113,7 @@ when it is not reachable.
 - Workers VPC is in beta; its API and pricing may change.
 - Mailpit's UI has no authentication by default. Keep it on your local network
   or put it behind authentication.
+
+## License
+
+[MIT](LICENSE)
