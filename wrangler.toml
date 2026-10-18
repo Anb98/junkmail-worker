@@ -1,0 +1,16 @@
+name = "junkmail"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+# Email-only Worker: no public workers.dev URL.
+workers_dev = false
+preview_urls = false
+
+[vars]
+# Mailpit SMTP address as seen from the machine running cloudflared (host:port).
+MAILPIT_ADDR = "MAILPIT-HOST:1025"
+
+[[vpc_networks]]
+binding = "HOME"
+# ID of the Cloudflare Tunnel that runs in your home network.
+tunnel_id = "YOUR-TUNNEL-ID"
+remote = true
